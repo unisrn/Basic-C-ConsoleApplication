@@ -45,13 +45,28 @@ namespace BasicConsoleApplication
                         Console.WriteLine();
                         break;
                     case "3":
+                        string operation = "";
                         Console.WriteLine("1. Add | 2. Minus | 3. Multiple | 4. Divide");
-                        Console.Write("Select operator (number 1 - 4): ");
-                        string operation = Console.ReadLine();
-                        Console.Write("Input number1: ");
-                        int num1 = Int32.Parse(Console.ReadLine());
-                        Console.Write("Input number1: ");
-                        int num2 = Int32.Parse(Console.ReadLine());
+                        
+                        do
+                        {
+                            Console.Write("Select operator (number 1 - 4): ");
+                            operation = Console.ReadLine();
+                        } while (operation != "1" && operation != "2" && operation != "3" && operation != "4");
+
+                        Console.WriteLine();
+
+                        int num1 = 0, num2 = 0;
+
+                        do
+                        {
+                            Console.Write("Input number1: ");
+                            num1 = Int32.Parse(Console.ReadLine());
+                            Console.Write("Input number1: ");
+                            num2 = Int32.Parse(Console.ReadLine());
+                            Console.WriteLine("--------------------------------------------");
+                        } while (num1 < num2);
+                        
                         Calculator(operation, num1, num2);
                         break;
                     case "4":
@@ -65,11 +80,12 @@ namespace BasicConsoleApplication
                         ResultOfMuliple(multiplier);
                         break;
                     default:
-                        Console.WriteLine("Please try again");
+                        Console.WriteLine("\n>>> Please try again");
+                        Console.WriteLine();
                         break;
                 }
             } while (choice != "0");
-            
+
 
             Console.ReadKey();
         }
