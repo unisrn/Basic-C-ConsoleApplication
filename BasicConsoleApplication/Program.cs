@@ -18,7 +18,7 @@ namespace BasicConsoleApplication
                 Console.WriteLine("1. Hello World");
                 Console.WriteLine("2. Hello Name");
                 Console.WriteLine("3. Calculator");
-                Console.WriteLine("4. Even or Odd Number");
+                Console.WriteLine("4. Prime Number");
                 Console.WriteLine("5. Multiplication");
                 Console.WriteLine("--------------------------------------------");
                 Console.Write("Input your choice: ");
@@ -70,9 +70,10 @@ namespace BasicConsoleApplication
                         Calculator(operation, num1, num2);
                         break;
                     case "4":
-                        Console.Write("Input the number you want to check: ");
-                        int checkNumber = Int32.Parse(Console.ReadLine());
-                        CheckEvenOrOdd(checkNumber);
+                        Console.WriteLine("1. Is the prime number ? | 2. The total number of prime number");
+                        Console.Write("Select choice: ");
+                        string choicePrime = Console.ReadLine();
+                        CheckPrime(choicePrime);
                         break;
                     case "5":
                         Console.Write("Input Multiplier: ");
@@ -120,11 +121,31 @@ namespace BasicConsoleApplication
             }
         }
 
-        public static void CheckEvenOrOdd(int checkNumber)
+        public static void CheckPrime(string checkPrime)
         {
-            if (checkNumber % 2 == 0)
+            if (checkPrime == "1")
             {
-                Console.WriteLine("\n>>> Even number");
+                Console.Write("Input your number: ");
+                int primeNumber = Int32.Parse(Console.ReadLine());
+
+                int j = 0;
+
+                for (int i = 1; i <= primeNumber; i++)
+                {
+                    int resPrime = primeNumber % i;
+                    if (resPrime == 0)
+                    {
+                        j += 1;
+                    }
+                }
+                if (j == 2)
+                {
+                    Console.WriteLine("\n>>> " + primeNumber + " is a prime number");
+                }
+                else
+                {
+                    Console.WriteLine("\n>>> " + primeNumber + " is not a prime number");
+                }
                 Console.WriteLine();
             }
             else
