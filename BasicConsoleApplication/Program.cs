@@ -47,7 +47,7 @@ namespace BasicConsoleApplication
                     case "3":
                         string operation = "";
                         Console.WriteLine("1. Add | 2. Minus | 3. Multiple | 4. Divide");
-                        
+
                         do
                         {
                             Console.Write("Select operator (number 1 - 4): ");
@@ -66,14 +66,22 @@ namespace BasicConsoleApplication
                             num2 = Int32.Parse(Console.ReadLine());
                             Console.WriteLine("--------------------------------------------");
                         } while (num1 < num2);
-                        
+
                         Calculator(operation, num1, num2);
                         break;
                     case "4":
-                        Console.WriteLine("1. Is the prime number ? | 2. The total number of prime number");
-                        Console.Write("Select choice: ");
-                        string choicePrime = Console.ReadLine();
-                        CheckPrime(choicePrime);
+                        while (true)
+                        {
+                            Console.WriteLine("1. Is the prime number ? | 2. The total number of prime number");
+                            Console.Write("Select choice: ");
+                            string choicePrime = Console.ReadLine();
+
+                            if (choicePrime == "1" || choicePrime == "2")
+                            {
+                                CheckPrime(choicePrime);
+                                break;
+                            }
+                        }
                         break;
                     case "5":
                         Console.Write("Input Multiplier: ");
@@ -123,22 +131,22 @@ namespace BasicConsoleApplication
 
         public static void CheckPrime(string checkPrime)
         {
+            int countCheck = 0;
+
             if (checkPrime == "1")
             {
                 Console.Write("Input your number: ");
                 int primeNumber = Int32.Parse(Console.ReadLine());
-
-                int j = 0;
 
                 for (int i = 1; i <= primeNumber; i++)
                 {
                     int resPrime = primeNumber % i;
                     if (resPrime == 0)
                     {
-                        j += 1;
+                        countCheck += 1;
                     }
                 }
-                if (j == 2)
+                if (countCheck == 2)
                 {
                     Console.WriteLine("\n>>> " + primeNumber + " is a prime number");
                 }
@@ -146,12 +154,37 @@ namespace BasicConsoleApplication
                 {
                     Console.WriteLine("\n>>> " + primeNumber + " is not a prime number");
                 }
+
                 Console.WriteLine();
             }
             else
             {
-                Console.WriteLine("\n>>> Odd number");
-                Console.WriteLine();
+                Console.Write("Input the total of number: ");
+                int totalPrime = Int32.Parse(Console.ReadLine());
+
+                Console.Write("\n>>> ");
+                int chcekTotal = 0;
+                for (int i = 0; i < 100; i++)
+                {
+                    int check = 0;
+                    for (int j = 1; j <= i; j++)
+                    {
+                        if (i % j == 0)
+                        {
+                            check += 1;
+                        }
+                    }
+                    if (check == 2)
+                    {
+                        chcekTotal += 1;
+                        if (chcekTotal <= totalPrime)
+                        {
+                            Console.Write(i + " ");
+                        }
+                    }
+                }
+
+                Console.WriteLine("\n");
             }
         }
 
